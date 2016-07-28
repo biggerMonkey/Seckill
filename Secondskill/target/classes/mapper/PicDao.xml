@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seckill.dao.PicDao">
+	<resultMap type="com.seckill.entity.Pic" id="PicMap">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="pic" property="picData" jdbcType="BLOB"/>
+	</resultMap>
+	<insert id="addPicByMap">
+		insert into pic(pic)
+		values(#{map,jdbcType=BLOB})
+	</insert>
+	<insert id="addPicByPic" parameterType="com.seckill.entity.Pic">
+		insert into pic(pic)
+		values(#{picData})
+	</insert>
+	<select id="queryByMap" resultType="java.util.HashMap">
+		select id,pic
+		from pic
+		where id=#{id}
+	</select>
+	
+	<select id="queryByPic" resultType="com.seckill.entity.Pic">
+		select id,pic
+		from pic
+		where id=#{id}
+	</select>
+</mapper>
